@@ -1,1 +1,2 @@
 dydx-v3-python
+python-dotenv
