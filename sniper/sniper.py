@@ -7,6 +7,7 @@ from dydx3.constants import API_HOST_MAINNET, NETWORK_ID_MAINNET, \
         POSITION_STATUS_OPEN, POSITION_STATUS_CLOSED, \
         MARKET_BTC_USD, MARKET_ETH_USD, MARKET_AVAX_USD, MARKET_ADA_USD
 from web3 import Web3
+from pprint import pprint
 
 
 load_dotenv()
@@ -20,5 +21,30 @@ client = Client(
     web3=Web3(Web3.HTTPProvider(WEB3_PROVIDER_URL))
 )
 
-account_response = client.public.get_markets()
-print(account_response.data)
+# markets_response = client.public.get_markets()
+# pprint(markets_response.data['markets'][MARKET_ADA_USD])
+
+# candles_response = client.public.get_candles(
+#     market=MARKET_ADA_USD,
+#     resolution='30MINS'
+# )
+# pprint(candles_response.data)
+
+# account_response = client.private.get_account()
+# pprint(account_response.data)
+
+# orders_response = client.private.get_orders(
+#     market=MARKET_ADA_USD,
+#     status=ORDER_STATUS_OPEN
+# )
+# pprint(orders_response.data)
+
+# api_keys_response = client.private.get_api_keys()
+# pprint(api_keys_response.data)
+
+# positions_response = client.private.get_positions(
+#     market=MARKET_ADA_USD,
+#     status=POSITION_STATUS_OPEN,
+# )
+# pprint(positions_response.data)
+
