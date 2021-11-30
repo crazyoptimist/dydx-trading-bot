@@ -1,16 +1,12 @@
 import time
 import schedule
-from sniper.sniper import DydxData, place_order
+from sniper.sniper import job
 
 
-def job():
-    dydx_data = DydxData()
-    z_score = dydx_data.find_z()
-    place_order(z_score)
+# schedule.every(5).minutes.do(job)
 
+# while True:
+#     schedule.run_pending()
+#     time.sleep(1)
 
-schedule.every(1).minutes.do(job)
-
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+job()
