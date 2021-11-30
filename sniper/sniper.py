@@ -10,7 +10,6 @@ from web3 import Web3
 from pprint import pprint
 import pandas as pd
 import numpy as np
-import schedule
 
 
 load_dotenv()
@@ -82,15 +81,3 @@ def place_order(z_score):
         print("Creating a sell order")
         return
 
-
-def job():
-    dydx_data = DydxData()
-    z_score = dydx_data.find_z()
-    place_order(z_score)
-
-
-schedule.every(5).minutes.do(job)
-
-while True:
-    schedule.run_pending()
-    time.sleep(1)
