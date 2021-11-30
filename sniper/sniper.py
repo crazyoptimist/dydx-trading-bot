@@ -8,6 +8,8 @@ from dydx3.constants import API_HOST_MAINNET, NETWORK_ID_MAINNET, \
         MARKET_BTC_USD, MARKET_ETH_USD, MARKET_AVAX_USD, MARKET_ADA_USD
 from web3 import Web3
 from pprint import pprint
+import pandas as pd
+import numpy as np
 
 
 load_dotenv()
@@ -48,3 +50,23 @@ client = Client(
 # )
 # pprint(positions_response.data)
 
+class DydxData:
+    def __init__(self):
+        candles_response = client.public.get_candles(
+            market=MARKET_ADA_USD,
+            resolution='5MINS',
+            limit=10
+        )
+        self.data = candles_response.data['candles']
+        self.df = pd.DataFrame(self.data)
+        self.df['close'] = self.df['close'].astype(float)
+
+    def find_z(self):
+        mean = self.df['close'].mean()
+        std = np.std(self.df['close'])
+        z_score = (self.df['close'].iloc[0] - mean)/std
+        print(z_score)
+
+
+dydx_data = DydxData()
+dydx_data.find_z()
