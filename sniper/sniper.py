@@ -61,6 +61,7 @@ class DydxData:
         self.data = candles_response.data['candles']
         self.df = pd.DataFrame(self.data)
         self.df['close'] = self.df['close'].astype(float)
+        print(self.df['startedAt'].iloc[0])
 
     def find_z(self):
         mean = self.df['close'].mean()
@@ -70,7 +71,7 @@ class DydxData:
 
 
 def place_order(z_score):
-    print(z_score)
+    print("z_score: ", z_score)
     if not (z_score > DEVIATION_THRESHOLD or z_score < -DEVIATION_THRESHOLD):
         print("Deviation does not exceed the limit")
         return

@@ -1,0 +1,8 @@
+version: "3"
+services:
+  dydx_bot:
+    container_name: sniper
+    build: .
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: always
