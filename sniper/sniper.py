@@ -10,10 +10,12 @@ from web3 import Web3
 from pprint import pprint
 import pandas as pd
 import numpy as np
+import schedule
 
 
 load_dotenv()
 WEB3_PROVIDER_URL = 'https://mainnet.infura.io/v3/' + os.getenv('INFURA_PROJECT_ID')
+DEVIATION_THRESHOLD = 1 # multiply of standard deviation
 
 
 client = Client(
@@ -65,8 +67,30 @@ class DydxData:
         mean = self.df['close'].mean()
         std = np.std(self.df['close'])
         z_score = (self.df['close'].iloc[0] - mean)/std
-        print(z_score)
+        return z_score
 
 
-dydx_data = DydxData()
-dydx_data.find_z()
+def place_order(z_score):
+    print(z_score)
+    if not (z_score > DEVIATION_THRESHOLD or z_score < -DEVIATION_THRESHOLD):
+        print("Deviation does not exceed the limit")
+        return
+    elif z_score > DEVIATION_THRESHOLD:
+        print("Creating a buy order")
+        return
+    elif z_score < -DEVIATION_THRESHOLD:
+        print("Creating a sell order")
+        return
+
+
+def job():
+    dydx_data = DydxData()
+    z_score = dydx_data.find_z()
+    place_order(z_score)
+
+
+schedule.every(5).minutes.do(job)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
