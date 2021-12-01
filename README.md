@@ -1,16 +1,30 @@
 # dYdX Sniper Bot
 
-## Install Deps
+## Prepare env variables
+
+```bash
+INFURA_PROJECT_ID=
+ETH_ADDRESS=
+# get stark key pair and api credentials from localStorage when you login the to dashboard
+STARK_PRIVATE_KEY=
+API_KEY=
+API_PASSPHRASE=
+API_SECRET=
+# pass the eth address to the get_account request, you will get the positionId back
+POSITION_ID=
+```
+
+## Install deps
 ```bash
 make install
 ```
 
-## Run It
+## Run it
 ```bash
 make run
 ```
 
-## Available Requests on dYdX
+## Available requests on dYdX
 ```python
 markets_response = client.public.get_markets()
 pprint(markets_response.data['markets'][MARKET_ADA_USD])
@@ -21,7 +35,9 @@ candles_response = client.public.get_candles(
 )
 pprint(candles_response.data)
 
-account_response = client.private.get_account()
+account_response = client.private.get_account(
+    ethereum_address='0x3fe444...'
+)
 pprint(account_response.data)
 
 orders_response = client.private.get_orders(
