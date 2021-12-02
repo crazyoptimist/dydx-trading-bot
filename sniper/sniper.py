@@ -22,6 +22,7 @@ TARGET_MARKET = MARKET_ADA_USD
 ORDER_SIZE = '30'
 TRAILING_PERCENT = 1
 PRICE_DELTA = 0.015
+CANDLE_RESOLUTION = '5MINS'
 
 
 api_key_credentials = {
@@ -44,8 +45,8 @@ class DydxData:
     def __init__(self):
         candles_response = client.public.get_candles(
             market=TARGET_MARKET,
-            resolution='5MINS',
-            limit=10
+            resolution=CANDLE_RESOLUTION,
+            limit=100
         )
         self.data = candles_response.data['candles']
         self.df = pd.DataFrame(self.data)
