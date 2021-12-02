@@ -22,7 +22,7 @@ TARGET_MARKET = MARKET_ADA_USD
 ORDER_SIZE = '30'
 TRAILING_PERCENT = 1
 PRICE_DELTA = 0.015
-CANDLE_RESOLUTION = '5MINS'
+CANDLE_RESOLUTION = '1MIN'
 
 
 api_key_credentials = {
@@ -51,12 +51,12 @@ class DydxData:
         self.data = candles_response.data['candles']
         self.df = pd.DataFrame(self.data)
         self.df['close'] = self.df['close'].astype(float)
-        print(self.df['startedAt'].iloc[0])
 
     def find_z(self):
         mean = self.df['close'].mean()
         std = np.std(self.df['close'])
         z_score = (self.df['close'].iloc[0] - mean)/std
+        print(self.df['startedAt'].iloc[0], " -- ", z_score)
         return z_score
 
 
