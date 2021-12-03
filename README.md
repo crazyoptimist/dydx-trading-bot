@@ -8,7 +8,7 @@ This project is educational purpose only, the algorithm might bring losses. Use 
 ```bash
 INFURA_PROJECT_ID=
 ETH_ADDRESS=
-# get stark key pair and api credentials from localStorage when you login the to dashboard
+# get stark key pair and api credentials from the browser console(Application Tab -> Local Storage) when you login the to dashboard
 STARK_PRIVATE_KEY=
 API_KEY=
 API_PASSPHRASE=
