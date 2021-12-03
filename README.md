@@ -1,5 +1,8 @@
 # dYdX Sniper Bot
 
+## Disclaimer
+This project is educational purpose only, the algorithm might bring losses. Use it at your own risk.
+
 ## Prepare env variables
 
 ```bash
@@ -57,6 +60,6 @@ pprint(positions_response.data)
 ```
 
 ## LICENSE
-Top secret! LOL
+MIT
 
 Created by [CrazyOptimist](https://github.com/crazyopimist)
