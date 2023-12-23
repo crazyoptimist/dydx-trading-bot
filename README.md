@@ -1,6 +1,7 @@
-# dYdX Sniper Bot
+# dYdX Algorithmic Trading Bot
 
 ## Disclaimer
+
 This project is educational purpose only, the algorithm might bring losses. Use it at your own risk.
 
 ## Prepare env variables
@@ -18,16 +19,19 @@ POSITION_ID=
 ```
 
 ## Install deps
+
 ```bash
 make install
 ```
 
 ## Run it
+
 ```bash
 make run
 ```
 
 ## Available requests on dYdX
+
 ```python
 markets_response = client.public.get_markets()
 pprint(markets_response.data['markets'][MARKET_ADA_USD])
@@ -62,4 +66,4 @@ pprint(positions_response.data)
 ## LICENSE
 MIT
 
-Created by [CrazyOptimist](https://github.com/crazyopimist)
+Created by [crazyoptimist](https://github.com/crazyopimist)

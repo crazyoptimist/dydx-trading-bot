@@ -1,7 +1,7 @@
 version: "3"
 services:
   dydx_bot:
-    container_name: sniper
+    container_name: dydx_trading_bot
     build: .
     environment:
       - PYTHONUNBUFFERED=1
